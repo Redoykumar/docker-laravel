@@ -4,17 +4,17 @@ volumes:
 
 configs:
   db-config:
-    file: ./infra/docker/mysql/my.cnf
+    file: ./.docker/docker/mysql/my.cnf
 
 services:
   app:
     build:
       context: .
-      dockerfile: ./infra/docker/php/Dockerfile
+      dockerfile: ./.docker/docker/php/Dockerfile
       target: ${APP_BUILD_TARGET:-development}
     volumes:
       - type: bind
-        source: ./src
+        source: ./backend
         target: /workspace
       - type: volume
         source: psysh-store
@@ -37,7 +37,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./infra/docker/nginx/Dockerfile
+      dockerfile: ./.docker/docker/nginx/Dockerfile
     ports:
       - target: 80
         published: ${WEB_PUBLISHED_PORT:-8800}
@@ -45,13 +45,13 @@ services:
         mode: host
     volumes:
       - type: bind
-        source: ./src
+        source: ./backend
         target: /workspace
 
   db:
     build:
       context: .
-      dockerfile: ./infra/docker/mysql/Dockerfile
+      dockerfile: ./.docker/docker/mysql/Dockerfile
     ports:
       - target: 3306
         published: ${DB_PUBLISHED_PORT:-3307}
@@ -91,3 +91,17 @@ services:
         mode: host
     depends_on:
       - db
+
+  vue-ui:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - target: 80
+        published: ${FRONTEND_PUBLISHED_PORT:-8181}
+        protocol: tcp
+        mode: host
+    container_name: vue-ui
+    # volumes:
+    #    - ./frontend:/usr/src/app/frontend
+    #    - /usr/src/app/frontend/node_modules

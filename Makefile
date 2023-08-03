@@ -8,7 +8,7 @@ install:
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
 create-project:
-	mkdir -p src
+	mkdir -p backend
 	docker compose build
 	docker compose up -d
 	docker compose exec app composer create-project --prefer-dist laravel/laravel .
