@@ -93,15 +93,14 @@ services:
       - db
 
   vue-ui:
+    container_name: vue-ui
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./.docker/docker/frontend/Dockerfile
     ports:
       - target: 80
         published: ${FRONTEND_PUBLISHED_PORT:-8181}
         protocol: tcp
         mode: host
-    container_name: vue-ui
-    # volumes:
-    #    - ./frontend:/usr/src/app/frontend
-    #    - /usr/src/app/frontend/node_modules
+
+
