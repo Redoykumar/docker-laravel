@@ -33,6 +33,8 @@ restart:
 	@make down
 	@make up
 destroy:
+	docker compose down --rmi all  --remove-orphans
+destroy-all:
 	docker compose down --rmi all --volumes --remove-orphans
 ps:
 	docker compose ps
