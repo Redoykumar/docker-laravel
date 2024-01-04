@@ -1,9 +1,9 @@
 name: laravel-create-project
 
 on:
-  pull_request:
-  # schedule:
-  #   - cron:  '0 0 * * *'
+  push:
+    branches:
+      - main
 
 jobs:
   docker-build:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Create & Start Docker Containers
         run: |
-          mkdir src
+          mkdir backend
           docker compose up -d
 
       - name: OS Version
