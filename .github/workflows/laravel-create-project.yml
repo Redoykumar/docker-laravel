@@ -2,8 +2,8 @@ name: laravel-create-project
 
 on:
   push:
-    branches:
-      - main
+    # branches:
+    #   - main
 
 jobs:
   docker-build:
