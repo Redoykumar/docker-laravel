@@ -92,15 +92,15 @@ services:
     depends_on:
       - db
 
-  vue-ui:
-    container_name: vue-ui
-    build:
-      context: .
-      dockerfile: ./.docker/docker/frontend/Dockerfile
-    ports:
-      - target: 80
-        published: ${FRONTEND_PUBLISHED_PORT:-8181}
-        protocol: tcp
-        mode: host
+  # vue-ui:
+  #   container_name: vue-ui
+  #   build:
+  #     context: .
+  #     dockerfile: ./.docker/docker/frontend/Dockerfile
+  #   ports:
+  #     - target: 80
+  #       published: ${FRONTEND_PUBLISHED_PORT:-8181}
+  #       protocol: tcp
+  #       mode: host
 
 

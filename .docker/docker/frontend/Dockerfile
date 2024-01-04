@@ -3,9 +3,7 @@ WORKDIR /app
 COPY ../../../frontend/package*.json ./
 RUN npm install
 COPY . .
-RUN pwd
 RUN npm run build
-
 
 FROM nginx:1.23.3-alpine as production
 COPY /frontend/dist /usr/share/nginx/html
