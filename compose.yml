@@ -92,7 +92,6 @@ services:
     depends_on:
       - db
 
-
   # vue-ui:
   #   container_name: vue-ui
   #   build:
