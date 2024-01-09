@@ -81,7 +81,7 @@ services:
         mode: host
 
   phpmyadmin:
-    container_name: laravel-phpmyadmin
+    container_name: laravel-phpmyadmin1
     image: phpmyadmin:latest
     restart: always
     ports:
